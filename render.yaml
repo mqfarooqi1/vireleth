@@ -1,0 +1,17 @@
+# One-click deploy config for Render.com (free tier, real HTTPS URL).
+# See DEPLOY.md for step-by-step instructions.
+services:
+  - type: web
+    name: vireleth
+    runtime: python
+    plan: free
+    buildCommand: "echo no dependencies to install"
+    startCommand: "python server.py"
+    envVars:
+      - key: HOST          # bind to all interfaces so the host can route to us
+        value: 0.0.0.0
+      - key: PYTHON_VERSION
+        value: "3.12.8"
+      # Add your Claude key here (or in the Render dashboard) to go live:
+      # - key: ANTHROPIC_API_KEY
+      #   sync: false

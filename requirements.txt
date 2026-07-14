@@ -1,0 +1,2 @@
+# Vireleth has NO third-party dependencies — it uses only the Python standard library.
+# This file exists so cloud hosts (Render, Railway, etc.) recognise it as a Python app.
