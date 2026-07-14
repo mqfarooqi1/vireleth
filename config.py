@@ -69,8 +69,24 @@ MODEL = get("ANTHROPIC_MODEL", "claude-opus-4-8")
 MAX_TOKENS = int(get("MAX_TOKENS", "4096"))
 MAX_TOOL_ITERS = 6  # safety cap on the agentic tool-use loop
 
-# True when no API key is configured -> the app runs in a clickable DEMO mode.
-DEMO_MODE = not bool(API_KEY)
+# --- Google Gemini (FREE tier: get a key at https://aistudio.google.com/apikey) ---
+GEMINI_API_KEY = get("GEMINI_API_KEY", "")
+GEMINI_MODEL = get("GEMINI_MODEL", "gemini-2.0-flash")
+GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models"
+
+# Pick the engine automatically from whichever key is present.
+if API_KEY:
+    PROVIDER = "anthropic"   # paid, most capable
+elif GEMINI_API_KEY:
+    PROVIDER = "gemini"      # FREE
+else:
+    PROVIDER = "demo"        # no key -> local tools only
+
+# True when no AI key is configured -> the app runs in a clickable DEMO mode.
+DEMO_MODE = PROVIDER == "demo"
+
+# Name of the active engine (shown in the UI status pill).
+ENGINE_NAME = {"anthropic": MODEL, "gemini": GEMINI_MODEL, "demo": "demo"}[PROVIDER]
 
 
 # ---------------------------------------------------------------------------
@@ -161,7 +177,7 @@ def client_config():
         "brand": BRAND,
         "tagline": TAGLINE,
         "owner": OWNER,
-        "model": MODEL,
+        "model": ENGINE_NAME,
         "demo": DEMO_MODE,
         "modes": MODES,
     }
