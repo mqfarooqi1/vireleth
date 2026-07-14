@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vireleth</title>
+  <meta name="description" content="Vireleth — your agentic, generative and predictive AI assistant." />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="icon" href="/icon.svg" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <meta name="theme-color" content="#0d1117" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Vireleth" />
+  <link rel="apple-touch-icon" href="/icon.svg" />
+  <script>window.APP_CONFIG = __APP_CONFIG__;</script>
+</head>
+<body>
+  <div class="app">
+    <!-- Sidebar / mode picker -->
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-logo" id="brandLogo">V</div>
+        <div class="brand-text">
+          <h1 id="brandName">Vireleth</h1>
+          <p id="brandTagline">Living intelligence · agentic, generative &amp; predictive.</p>
+        </div>
+      </div>
+
+      <div class="modes" id="modeList"><!-- filled by JS --></div>
+
+      <div class="sidebar-foot">
+        <div class="badges">
+          <span class="badge feat">⚡ Agentic</span>
+          <span class="badge feat">✍️ Generative</span>
+          <span class="badge feat">📈 Predictive</span>
+        </div>
+        <div class="status" id="statusPill"></div>
+      </div>
+    </aside>
+
+    <!-- Chat -->
+    <main class="chat">
+      <header class="chat-head">
+        <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">☰</button>
+        <div class="chat-head-title">
+          <span class="mode-icon" id="headIcon">✨</span>
+          <div>
+            <div class="mode-name" id="headName">General</div>
+            <div class="mode-desc" id="headDesc">An all-purpose assistant.</div>
+          </div>
+        </div>
+        <button class="ghost-btn install-btn" id="installBtn" title="Install app" hidden>⬇ Install app</button>
+        <button class="ghost-btn" id="newChatBtn" title="New chat">＋ New</button>
+      </header>
+
+      <div class="messages" id="messages"><!-- messages injected here --></div>
+
+      <div class="suggestions" id="suggestions"><!-- suggestion chips --></div>
+
+      <form class="composer" id="composer" autocomplete="off">
+        <textarea id="input" rows="1" placeholder="Ask me anything…"></textarea>
+        <button type="submit" id="sendBtn" aria-label="Send">
+          <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M3 20.5v-6l8-2-8-2v-6l19 8z"/></svg>
+        </button>
+      </form>
+      <p class="disclaimer">AI can make mistakes. Verify important information.</p>
+    </main>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
